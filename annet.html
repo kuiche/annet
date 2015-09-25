@@ -1,0 +1,60 @@
+<head>
+  <title>annet</title>
+</head>
+
+<template name="mainLayout">
+  <nav class="navbar navbar-static">
+    <div class="container-fluid">
+      {{> login}}
+    </div>
+  </nav>
+  <div class="container">
+    <main>
+      {{> Template.dynamic template=content}}
+    </main>
+  </div>
+</template>
+
+<template name="hello">
+  {{#if currentUser}}
+    {{> home}}
+  {{else}}
+    {{> noAuth}}
+  {{/if}}
+</template>
+
+<template name="home">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+        
+      <form id="post-form">
+        <div class="form-group">
+          <textarea class="form-control" name="message"></textarea>
+        </div>
+        <button class="btn btn-info form-control">Submit</button>
+      </form>
+      
+      <section>
+        <h2>Feed</h2>
+        {{#each posts}}
+          <div>{{this.content}}</div>
+        {{/each}}
+      </section>
+    </div>
+  </div>
+</template>
+
+<template name="noAuth">
+  <div class="jumbotron">
+    <h1>Welcome to Meteor!</h1>
+  </div>
+  Welcome! Please login!
+</template>
+
+<template name="login">
+  {{#if currentUser}}
+    <span class="btn btn-small btn-info" id="logout">Logout</span>
+  {{else}}
+    <span class="btn btn-small btn-success" id="login-goog">Login with Google</span>
+  {{/if}}
+</template>
