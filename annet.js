@@ -16,8 +16,6 @@ if (Meteor.isClient) {
       Session.set('counter', Session.get('counter') + 1);
     }
   });
-
-  Meteor.subscribe("posts");
 }
 
 if (Meteor.isServer) {
@@ -25,10 +23,10 @@ if (Meteor.isServer) {
     // code to run on server at startup
   });
 
-  Meteor.publish("posts", function() {
+  Meteor.publish("posts", function(limit) {
     return Posts.find({
       author: this.userId
-    });
+    }, {limit: limit || 10, sort: {createdAt: -1}});
   });
 
   Meteor.methods({

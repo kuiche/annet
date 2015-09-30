@@ -37,7 +37,11 @@
       <section>
         <h2>Feed</h2>
         {{#each posts}}
-          <div>{{this.content}}</div>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              {{this.content}}
+            </div>
+          </div>
         {{/each}}
       </section>
     </div>

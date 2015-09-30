@@ -6,6 +6,8 @@ Template.home.events({
   }
 });
 
+Meteor.subscribeWithPagination("posts", 5);
+
 Template.home.helpers({
   posts: function () {
     // Find all posts and list the newest groups first
